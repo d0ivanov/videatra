@@ -1,31 +1,36 @@
 require 'sinatra'
 require 'sinatra/config_file'
 require 'sinatra/cookies'
-require 'rack-flash'
-require 'sinatra/redirect_with_flash'
-require_relative 'lib/auth/strategies'
+require 'sinatra/videoman'
+require 'authstrategies'
+require 'authstrategies/helpers'
+require 'rack/flash'
 
 class Videatra < Sinatra::Application
-	enable :sessions
-	use Rack::Flash
-	use AuthStrategies::Middleware
+  register Sinatra::ConfigFile
+  config_file './config/application.yml'
 
-	register Sinatra::ConfigFile
-	config_file './config/application.yml'
+  set :root, Proc.new {File.dirname(__FILE__)}
+  set :models_dir, Proc.new {File.join(root, settings.models_folder)}
+  set :views_dir, Proc.new {File.join(root, settings.views_folder)}
+  set :erb, :format => :html5
+  set :helpers_dir, Proc.new {File.join(root, settings.helpers_folder)}
 
-	set :root, Proc.new {File.dirname(__FILE__)}
-	set :models_dir, Proc.new {File.join(root, settings.models_folder)}
-	set :views_dir, Proc.new {File.join(root, settings.views_folder)}
-	set :erb, :format => :html5
-	set :helpers_dir, Proc.new {File.join(root, settings.helpers_folder)}
+  use Rack::Session::Cookie, {
+    :secret => settings.cookie_secret,
+    :expire_after => settings.cookie_expire_time.to_i
+  }
+  use Rack::Flash
+  use Authstrategies::Middleware
+  use Sinatra::Videoman::Middleware
 
+	helpers Rack::Utils
+	helpers	Sinatra::Cookies
+	helpers Authstrategies::Helpers
 
-	helpers do
-		include Rack::Utils
-		Sinatra::RedirectWithFlash
-		Sinatra::Cookies
-	end
-
+  Sinatra::Videoman::Manager.config do |config|
+    config[:upload_dir] = settings.root
+  end
 end
 
 require_relative 'config/initializers/models'

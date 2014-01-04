@@ -18,30 +18,38 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.1)
     atomic (1.1.14)
+    authstrategies (0.1.2)
+      activerecord
+      bcrypt-ruby
+      protected_attributes
+      rack-flash3 (= 1.0.5)
+      sinatra
+      warden
     backports (3.3.5)
     bcrypt-ruby (3.1.2)
     builder (3.1.4)
+    carrierwave (0.9.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
     i18n (0.6.9)
+    json (1.8.1)
     minitest (4.7.5)
     multi_json (1.8.2)
     mysql2 (0.3.14)
+    protected_attributes (1.0.5)
+      activemodel (>= 4.0.1, < 5.0)
     rack (1.5.2)
-    rack-flash3 (1.0.1)
-      rack
+    rack-flash3 (1.0.5)
       rack
     rack-protection (1.5.1)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    shotgun (0.9)
-      rack (>= 1.0)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
-    sinatra-activerecord (1.2.3)
-      activerecord (>= 3.0)
-      sinatra (~> 1.0)
     sinatra-config-file (1.0)
       sinatra-contrib
     sinatra-contrib (1.4.2)
@@ -51,8 +59,12 @@ GEM
       rack-test
       sinatra (~> 1.4.0)
       tilt (~> 1.3)
-    sinatra-redirect-with-flash (0.2.0)
-      sinatra (>= 1.0.0)
+    sinatra-videoman (0.0.1)
+      activerecord
+      bcrypt-ruby
+      carrierwave
+      protected_attributes
+      sinatra
     thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
@@ -65,14 +77,15 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  authstrategies (~> 0.1.2)
   bcrypt-ruby
+  carrierwave
   mysql2
+  protected_attributes
   rack
-  rack-flash3 (= 1.0.1)
-  shotgun
+  rack-flash3 (= 1.0.5)
   sinatra
-  sinatra-activerecord
   sinatra-config-file
   sinatra-contrib
-  sinatra-redirect-with-flash
+  sinatra-videoman
   warden

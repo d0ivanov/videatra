@@ -1,5 +1,5 @@
 require 'active_record'
-require 'sinatra/activerecord'
+require 'protected_attributes'
 
 class Videatra < Sinatra::Application
 
