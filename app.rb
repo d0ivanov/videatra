@@ -5,6 +5,8 @@ require 'sinatra/videoman'
 require 'authstrategies'
 require 'authstrategies/helpers'
 require 'rack/flash'
+require './lib/PlugMan'
+require './plugman/main'
 
 class Videatra < Sinatra::Application
   register Sinatra::ConfigFile
