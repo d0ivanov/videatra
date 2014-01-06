@@ -11,8 +11,8 @@ class Videatra < Sinatra::Application
 		end
 	end
 
-  get "/cool" do
-    flash[:notice]
+  post "/cool" do
+    puts params
   end
 
 end

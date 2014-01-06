@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140102185959) do
+ActiveRecord::Schema.define(version: 20140105151325) do
 
   create_table "users", force: true do |t|
     t.string   "email",                           null: false
@@ -24,15 +24,18 @@ ActiveRecord::Schema.define(version: 20140102185959) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", unique: true, using: :btree
 
+  create_table "video_files", force: true do |t|
+    t.integer "video_id"
+    t.string  "content_type"
+    t.string  "file"
+  end
+
   create_table "videos", force: true do |t|
     t.string   "title"
     t.string   "description"
-    t.string   "tags"
-    t.string   "video"
+    t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "videos", ["title"], name: "index_videos_on_title", unique: true, using: :btree
 
 end

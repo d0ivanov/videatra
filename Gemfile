@@ -10,6 +10,7 @@ gem 'rack-flash3', '1.0.5', require: 'rack/flash'
 gem 'bcrypt-ruby'
 
 gem 'activerecord'
+gem 'sinatra-activerecord'
 gem 'protected_attributes'
 gem 'mysql2'
 

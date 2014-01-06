@@ -31,6 +31,7 @@ end
 MAIN = PlugMan.registered_plugins[:main]
 
 require './plugman/authentication'
+require './plugman/videos'
 
 get '/_reload_plugins' do
 	PlugMan.stop_all_plugins
@@ -38,9 +39,11 @@ get '/_reload_plugins' do
 	PlugMan.load_plugins './plugins'
 	PlugMan.start_all_plugins
   auth_hooks
+  video_hooks
   redirect '/'
 end
 
 PlugMan.load_plugins './plugins'
 PlugMan.start_all_plugins
 auth_hooks
+video_hooks

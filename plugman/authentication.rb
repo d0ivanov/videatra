@@ -14,8 +14,11 @@ extension_points = [
 
 resources = {
   after_logout_path: '/',
+  after_logout_msg: 'Successfully logged out!',
   after_login_path: '/',
+  after_login_msg: 'Successfully logged in!',
   after_signup_path: '/'
+  after_signup_msg: 'Successfully signed up!'
 }
 
 MAIN.extension_points += extension_points
@@ -62,9 +65,12 @@ def auth_hooks
   # This three filter functions, when defined in client plugins should return an
   # array with [path, message]
 
-  Authstrategies::Manager.after_logout_path *MAIN.get(:filter_after_logout_path)
+  Authstrategies::Manager.config[:after_logout_path] = *MAIN.get(:filter_after_logout_path)
+  Authstrategies::Manager.config[:after_logout_msg] = *MAIN.get(:filter_after_logout_msg)
 
-  Authstrategies::Manager.after_login_path *MAIN.get(:filter_after_login_path)
+  Authstrategies::Manager.config[:after_login_path] = *MAIN.get(:filter_after_login_path)
+  Authstrategies::Manager.config[:after_login_msg] = *MAIN.get(:filter_after_login_msg)
 
-  Authstrategies::Manager.after_signup_path *MAIN.get(:filter_after_signup_path)
+  Authstrategies::Manager.config[:after_signup_path] = *MAIN.get(:filter_after_signup_path)
+  Authstrategies::Manager.config[:after_signup_msg] = *MAIN.get(:filter_after_signup_msg)
 end
