@@ -29,7 +29,8 @@ class Videatra < Sinatra::Application
 	helpers Authstrategies::Helpers
 
   Sinatra::Videoman::Manager.config do |config|
-    config[:upload_dir] = settings.root
+    config[:video_upload_dir] = settings.root + '/public/uploads'
+    config[:thumb_upload_dir] = settings.root + '/public/uploads/thumbnails'
   end
 end
 
