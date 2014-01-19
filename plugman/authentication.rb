@@ -1,29 +1,16 @@
 extension_points = [
+  :event_before_login_failure,
+  :event_before_logout,
+
   :event_after_set_user,
   :event_after_authentication,
-  :event_before_login_failure,
   :event_after_login_failure,
-  :event_before_logout,
   :event_after_logout,
   :event_after_login,
   :event_after_signup,
-  :filter_after_logout_path,
-  :filter_after_login_path,
-  :filter_after_signup_path
 ]
 
-resources = {
-  after_logout_path: '/',
-  after_logout_msg: 'Successfully logged out!',
-  after_login_path: '/',
-  after_login_msg: 'Successfully logged in!',
-  after_signup_path: '/'
-  after_signup_msg: 'Successfully signed up!'
-}
-
-MAIN.extension_points += extension_points
-MAIN.resources += resources
-
+MAIN.extension_points + extension_points
 
 # we wrap the hooks in a method, so that they can be reinitialized when
 # we call reload plugins
@@ -60,17 +47,4 @@ def auth_hooks
   Authstrategies::Manager.after_signup do
     MAIN.call :event_after_signup
   end
-
-  # filters
-  # This three filter functions, when defined in client plugins should return an
-  # array with [path, message]
-
-  Authstrategies::Manager.config[:after_logout_path] = *MAIN.get(:filter_after_logout_path)
-  Authstrategies::Manager.config[:after_logout_msg] = *MAIN.get(:filter_after_logout_msg)
-
-  Authstrategies::Manager.config[:after_login_path] = *MAIN.get(:filter_after_login_path)
-  Authstrategies::Manager.config[:after_login_msg] = *MAIN.get(:filter_after_login_msg)
-
-  Authstrategies::Manager.config[:after_signup_path] = *MAIN.get(:filter_after_signup_path)
-  Authstrategies::Manager.config[:after_signup_msg] = *MAIN.get(:filter_after_signup_msg)
 end

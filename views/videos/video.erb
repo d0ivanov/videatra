@@ -1,0 +1,10 @@
+<h3><%= video.title %></h3>
+<video width="640" height="360" controls>
+  <% video.video_files.each do |source| %>
+    <source src=<%= source.file.url %> type=<%= source.content_type %> />
+  <% end %>
+    <%= I18n.t 'video_tag_not_supported' %>
+</video>
+<div id="description">
+  <%= video.description %>
+</div>

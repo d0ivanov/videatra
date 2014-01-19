@@ -4,21 +4,14 @@ PlugMan.define :main do
   extends({root: [:root]})
   requires []
   #should be symbols
-  extension_points []
+  extension_points [:plugin_routes, :filter_before_url, :filter_after_url]
   params()
 
   # name: default_value pairs, where name is symbol
   @resources = {}
 
-  attr_accessor :resources
-
-  def get resource
-    resource = resource.to_sym
-    current = @resources[resource]
-    PlugMan.extensions(:main, "filter_#{resource}").each do |plugin|
-      current = plugins.send("filter_#{resource}", current)
-    end
-    current
+  def resources
+    @resources
   end
 
   def call event, *args
@@ -26,6 +19,16 @@ PlugMan.define :main do
       plugin.send("event_#{event}", *args)
     end
   end
+
+  def all_plugin_routes
+    plugin_routes = []
+    PlugMan.extensions(:main, :plugin_routes).each do |plugin|
+      routes_with_plugin_name = plugin.plugin_routes.map { |a| [plugin.name] + a }
+      plugin_routes << routes_with_plugin_name
+    end
+    plugin_routes.flatten(1)
+  end
+
 end
 
 MAIN = PlugMan.registered_plugins[:main]
