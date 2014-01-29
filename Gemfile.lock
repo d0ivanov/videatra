@@ -55,6 +55,8 @@ GEM
     sinatra-activerecord (1.2.3)
       activerecord (>= 3.0)
       sinatra (~> 1.0)
+    sinatra-advanced-routes (0.5.3)
+      sinatra (~> 1.0)
     sinatra-config-file (1.0)
       sinatra-contrib
     sinatra-contrib (1.4.2)
@@ -95,6 +97,7 @@ DEPENDENCIES
   rack-flash3 (= 1.0.5)
   sinatra
   sinatra-activerecord
+  sinatra-advanced-routes
   sinatra-config-file
   sinatra-contrib
   sinatra-partial

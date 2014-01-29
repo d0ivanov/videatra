@@ -3,6 +3,18 @@
 	<head>
 		<meta charset='utf-8'/>
 		<title>.::[Videatra]::.</title>
+
+    <%= javascript_include_tag "jquery-1.11.0.min.js" %>
+    <%= javascript_include_tag "bootstrap.min.js" %>
+    <%= javascript_include_tag "video.js" %>
+
+    <%= stylesheet_include_tag "bootstrap.min.css" %>
+    <%= stylesheet_include_tag "bootstrap-theme.min.css" %>
+    <%= stylesheet_include_tag "video-js.min.css" %>
+
+    <script type="text/javascript">
+      <%= "videojs.options.flash.swf = 'http://#{request.host}/video-js.swf'" %>
+    </script>
 	</head>
 	<body>
 		<% if flash[:error] %>

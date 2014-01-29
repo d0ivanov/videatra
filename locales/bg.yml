@@ -1,1 +1,24 @@
 bg:
+  title: Заглавие
+  description: Описание
+  thumbnail: Миниатюра
+  submit: Изпращане
+  video_files: Видео файлове
+  video: Видео
+  add_field: Добавяне на поле
+  video_tag_unsupported: Браузърът ви не поддържа HTML5 видеа!
+  video_not_found: Видеото не беше намерено!
+  video_deleted: Видеото изтрито!
+  video_uploaded: Видеото качено!
+  video_edited: Видеото обновено!
+  login_msg: Успешен вход!
+  signup_msg: Добре дошли!
+  email: Email
+  password: Парола
+  remember_me: Запомни ме
+  submit: Пускане
+  not_registered: Нямате акаунт?
+  signup: Регистрация
+  confirm: Потвърждение
+  register: Регистрация
+  login: Вход

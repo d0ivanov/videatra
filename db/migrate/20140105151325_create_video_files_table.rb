@@ -4,6 +4,8 @@ class CreateVideoFilesTable < ActiveRecord::Migration
       t.belongs_to :video
       t.string :content_type
       t.string :file
+
+      t.timestamps
     end
   end
 

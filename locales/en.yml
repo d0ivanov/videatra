@@ -1,1 +1,24 @@
 en:
+  title: Title
+  description: Description
+  thumbnail: Thumbnail
+  submit: Submit
+  video_files: Video files
+  video: Video
+  add_field: Add field
+  video_tag_unsupported: Your browser does not support the video tag!
+  video_not_found: Video not found!
+  video_deleted: Video deleted!
+  video_uploaded: Video uploaded!
+  video_edited: Video updated!
+  login_msg: Successfully logged in!
+  signup_msg: Successfully signed up!
+  email: Email
+  password: Password
+  remember_me: Remember me
+  submit: Submit
+  not_registered: Don't have an account?
+  signup: Signup
+  confirm: Confirm
+  register: Register
+  login: Login

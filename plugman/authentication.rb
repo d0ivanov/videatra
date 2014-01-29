@@ -28,7 +28,7 @@ def auth_hooks
     MAIN.call :event_before_login_failure, env, opts
   end
 
-  Authstrategies::Manager.after_login_failure do
+  Authstrategies::Manager.after_login_failure do |request, response|
     MAIN.call :event_after_login_failure
   end
 
@@ -36,15 +36,15 @@ def auth_hooks
     MAIN.call :event_before_logout, user, auth, opts
   end
 
-  Authstrategies::Manager.after_logout do
-    MAIN.call :event_after_logout
+  Authstrategies::Manager.after_logout do |request, response|
+    MAIN.call :event_after_logout, request, response
   end
 
-  Authstrategies::Manager.after_login do
-    MAIN.call :event_after_login
+  Authstrategies::Manager.after_login do |user, request, response|
+    MAIN.call :event_after_login, user, request, response
   end
 
-  Authstrategies::Manager.after_signup do
-    MAIN.call :event_after_signup
+  Authstrategies::Manager.after_signup do |user, request, repsponse|
+    MAIN.call :event_after_signup, user, request, repsponse
   end
 end

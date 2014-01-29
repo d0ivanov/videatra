@@ -5,6 +5,7 @@ gem 'sinatra'
 gem 'sinatra-config-file'
 gem 'sinatra-contrib'
 gem 'sinatra-partial'
+gem 'sinatra-advanced-routes', :require => 'sinatra/advanced_routes'
 
 gem 'i18n'
 
