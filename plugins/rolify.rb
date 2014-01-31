@@ -1,6 +1,6 @@
+require_relative 'rolify/migrate/create_roles_table'
 require_relative 'rolify/models/user'
 require_relative 'rolify/models/role'
-require_relative 'rolify/migrate/create_roles_table'
 
 PlugMan.define :rolify do
   author 'Dobromir Ivanov'
@@ -10,5 +10,8 @@ PlugMan.define :rolify do
   extension_points []
   params()
 
-  CreateRolesTable.new.up
+  def start
+    CreateRolesTable.new.up
+    true  
+  end
 end

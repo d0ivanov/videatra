@@ -40,7 +40,7 @@ class Videatra < Sinatra::Application
   Videatra.each_route do |route|
     before route.path do
       PlugMan.extensions(:main, :filter_before_route).each do |plugin|
-        plugin.filter_before_route(current_user, route.path, response)
+        plugin.filter_before_route(current_user, route.path, params, response)
       end
     end
   end

@@ -4,13 +4,20 @@ PlugMan.define :main do
   extends({root: [:root]})
   requires []
   #should be symbols
-  extension_points [:filter_before_route, :filter_video_title]
+  extension_points [:filter_before_route, :filter_site_title, :filter_header_logo,
+                    :filter_header_menu, :filter_footer, :filter_page_title,
+                    :filter_video_title, :filter_video_subtitles, :filter_video_meta,
+                   ]
   params()
 
   def call event, *args
     PlugMan.extensions(:main, "#{event}").each do |plugin|
       plugin.send("#{event}", *args)
     end
+  end
+
+  def filter_site_title
+    title = "::"
   end
 end
 
