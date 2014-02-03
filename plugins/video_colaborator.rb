@@ -2,7 +2,7 @@ PlugMan.define :video_colaborator do
   author 'Dobromir Ivanov'
   version '0.0.1'
   extends ({guardian: [:filter_conditions, :event_filter_failed]})
-  requires [:rolify]
+  requires [:main, :rolify]
   extension_points []
   params()
 

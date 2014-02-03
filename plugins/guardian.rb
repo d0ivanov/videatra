@@ -2,7 +2,7 @@ PlugMan.define :guardian do
   author 'Dobromir Ivanov'
   version '0.0.1'
   extends ({main: [:filter_before_route]})
-  requires []
+  requires [:main]
   extension_points [:filter_conditions, :event_filter_failed]
   params()
 
