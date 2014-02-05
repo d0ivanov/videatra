@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '1.9.3'
 
+gem 'rake'
+
 gem 'sinatra'
 gem 'sinatra-flash'
 gem 'sinatra-config-file'
