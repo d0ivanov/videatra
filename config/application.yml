@@ -2,20 +2,6 @@ locales:
   default_locale: bg
   locales_dir: locales
 
-database:
-  development:
-    adapter: mysql2
-    host: localhost
-    username: root
-    password: 
-    database: videatra-dev
-  production:
-    adapter:
-    host:
-    username:
-    password:
-    database:
-
 dirspec:
   models: models
   views: views

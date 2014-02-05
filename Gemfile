@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-#ruby '1.9.3'
+ruby '1.9.3'
 
 gem 'sinatra'
 gem 'sinatra-flash'
@@ -12,14 +12,20 @@ gem 'i18n'
 
 gem 'rack'
 gem 'rack-contrib'
-#gem 'rack-flash3', '1.0.5', require: 'rack/flash'
 
 gem 'bcrypt-ruby'
 
 gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'protected_attributes'
-gem 'mysql2'
+
+group :development, :test do
+  gem 'mysql2'
+end
+
+group :production do
+  gem 'pg'
+end
 
 gem 'warden'
 gem 'carrierwave'
