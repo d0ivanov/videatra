@@ -1,0 +1,48 @@
+locales:
+  default_locale: bg
+  locales_dir: locales
+
+database:
+  development:
+    adapter: mysql2
+    host: localhost
+    username: root
+    password: 
+    database: videatra-dev
+  production:
+    adapter:
+    host:
+    username:
+    password:
+    database:
+
+dirspec:
+  models: models
+  views: views
+  helpers: helpers
+  plugins: plugins
+
+cookies:
+  expire_time: 3600
+  secret: dcacdec11ab9b7ac474e93fc342739dd3c2c8de3
+
+pathspec:
+  authentication:
+    after_login: /
+    after_logout: /
+    after_signup: /
+  videos:
+    after_save: /
+    after_update: /
+    after_delete: /
+
+upload_spec:
+  videos:
+    upload_dir: /public/uploads/videos
+    allowed_extensions: [webm, ogv, mp4]
+    max_file_size: 400
+  thumbnails:
+    upload_dir: /public/uploads/thumbnails
+    max_file_size: 2
+    allowed_extensions: [jpg, jpeg, bmp]
+
