@@ -12,10 +12,14 @@ PlugMan.define :subscribeme do
   extension_points []
   params()
 
-  filter_by_subscription = Proc.new { |user, params|
-    video = Video.find_by_id(params[:id])
-    (user && user.subscribed?(video))
-  }
+  filter_by_subscription = Proc.new do |user, params|
+    video = Video.find_by(id: params[:id])
+    if !video
+      false
+    else
+      (user && user.subscribed?(video))
+    end
+  end
 
   @protected_routes = {
     "/videos/watch/:id/?" => filter_by_subscription

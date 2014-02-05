@@ -1,1 +1,48 @@
-<%= partial 'videos/video'.to_sym, :locals => {:video => @video} %>
+<div class="row-fluid">
+    <div id="content" class="container">
+      <h2>
+        <%= @video.title %>
+      </h2>
+      <article class="episode">
+        <div class="row-fluid">
+          <div class="sheet episode-page span8">
+            <div id="video-container">
+              <%= partial :'videos/video', :locals => {:video => @video} %>
+            </div>
+            <ul id="episode-info">
+              <!-- There should be PlugMan hook here -->
+            </ul>
+            <div id="episode-share" class="collapse row-fluid">
+              <div class="inside-sheet">
+                <!-- There should be a PlugMan hook here -->
+                <div class="span2 stumble-upon">
+                  <su:badge layout='5'></su:badge>
+                </div>
+              </div>
+            </div>
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#episode-description" data-toggle="tab"><i class="icon-info-sign"></i> Description</a></li>
+              <li><a href="#episode-comments" data-toggle="tab"><i class="icon-comment"></i> Comments</a></li>
+              <li><a href="#episode-subtitles" data-toggle="tab"><i class="icon-additional icon-captions"></i> Subtitles</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade in inside-sheet text-content active" id="episode-description">
+                <%= @video.description %>
+              </div>
+              <div class="tab-pane fade inside-sheet" id="episode-comments">
+                <div class="fb-comments" data-href="http://www.fllcasts.com/episodes/52-judging-robot-design-part-2-the-programming" data-width="580"></div>
+              </div>
+              <div class="tab-pane fade inside-sheet text-content" id="episode-subtitles">
+                <!-- There should a PlugMan hook here -->
+              </div>
+            </div>
+          </div>
+          <div class="span4">
+            <aside></aside>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+</div>

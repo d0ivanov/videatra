@@ -1,7 +1,18 @@
-class Videatra < Sinatra::Application
+class Videatra < Sinatra::Base
 	get "/" do
+    @video_links = Video.all
 		erb :index
 	end
+
+  get '/log_in/?' do
+    redirect '/' if authenticated?
+    erb :'users/login'
+  end
+
+  get '/sign_up/?' do
+    redirect '/' if authenticated?
+    erb :'users/signup'
+  end
 
   get '/_reload_plugins' do
     PlugMan.stop_all_plugins

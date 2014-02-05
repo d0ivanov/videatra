@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :subscription_plans, :through => :subscription_plans_users
 
   def subscribed? video
-    plans = (subscription_plans & video.subscription_plans)
+    plans = subscription_plans & video.subscription_plans
     delete_expired_plans plans
     !(subscription_plans & video.subscription_plans).empty?
   end

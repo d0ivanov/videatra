@@ -1,0 +1,48 @@
+<div class="row-fluid service">
+    <div class="container">
+      <h2 class="large">Log in to Videatra</h2>
+      <div class="row-fluid">
+        <div class="span7">
+          <div id="login-form" class="service-form form-dark">
+            <form accept-charset="UTF-8" action="/login" class="new_user" id="new_user" method="post">
+              <div class="form-row">
+                <label class="placeholder-fallback" for="user_email">E-mail address</label>
+                <input class="input-block-level" id="user_email" name="email" placeholder="E-mail address" size="30" type="email" required />
+              </div>
+              <div class="form-row">
+                <label class="placeholder-fallback" for="user_password">Password</label>
+                <input class="input-block-level" id="user_password" name="password" placeholder="Password" size="30" type="password" required />
+              </div>
+              <div class="form-row checkbox-row">
+                <!-- <input name="remember_me" type="hidden" value="0" /> -->
+                <input id="user_remember_me" name="remember_me" type="checkbox"/>
+                <span class="label-container"><label for="user_remember_me">Remember me</label></span>
+              </div>
+              <div class="form-row">
+                <input class="button-with-arrow" name="commit" type="submit" value="Log in" />
+              </div>
+            </form>
+            <div class="helper-links">
+              <!-- Should have PlugMan hook here -->
+            </div>
+          </div>
+        </div>
+        <div class="span4 offset1">
+          <div class="login-account-info">
+            <div class="account-description">
+              <h3><!-- Should have PlugMan hook here -->Don't have an account yet?</h3>
+              <p>Please register! We need you!.</p>
+            </div>
+            <a href="/sign_up" class="account-link">Create an account</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Probably not the best way to accomplish
+my goals, but it's late and...well what could go wrong...right? -->
+<script type="text/javascript">
+  $("body").addClass("dark-background");
+</script>

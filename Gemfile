@@ -24,5 +24,5 @@ gem 'mysql2'
 gem 'warden'
 gem 'carrierwave'
 
-gem 'authstrategies', '0.1.32'
+gem 'authstrategies', '0.1.4'
 gem 'sinatra-videoman', '0.0.1a'

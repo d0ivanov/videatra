@@ -1,7 +1,7 @@
 require 'authstrategies'
 require 'authstrategies/helpers'
 
-class Videatra
+class Videatra < Sinatra::Base
   Authstrategies::Manager.config do |config|
     config[:default_locales] = settings.locales[:default_locale]
 

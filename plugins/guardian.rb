@@ -10,7 +10,6 @@ PlugMan.define :guardian do
     PlugMan.extensions(:guardian, :filter_conditions).each do |plugin|
       if !plugin.filter_conditions current_user, path, params
         PlugMan.extensions(:guardian, :event_filter_failed).each do |plugin|
-          puts "event trigered from #{path}"
           plugin.event_filter_failed path, response
         end
       end

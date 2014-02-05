@@ -12,6 +12,35 @@
 
 ActiveRecord::Schema.define(version: 20140105151325) do
 
+  create_table "roles", force: true do |t|
+    t.string "role"
+  end
+
+  create_table "roles_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscription_plans", force: true do |t|
+    t.string  "name"
+    t.integer "duration"
+    t.integer "price"
+  end
+
+  create_table "subscription_plans_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "subscription_plan_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscription_plans_videos", force: true do |t|
+    t.integer "video_id"
+    t.integer "subscription_plan_id"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                           null: false
     t.string   "encrypted_password", default: "", null: false
@@ -25,9 +54,11 @@ ActiveRecord::Schema.define(version: 20140105151325) do
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", unique: true, using: :btree
 
   create_table "video_files", force: true do |t|
-    t.integer "video_id"
-    t.string  "content_type"
-    t.string  "file"
+    t.integer  "video_id"
+    t.string   "content_type"
+    t.string   "file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "videos", force: true do |t|

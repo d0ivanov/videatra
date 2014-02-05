@@ -12,6 +12,6 @@ PlugMan.define :rolify do
 
   def start
     CreateRolesTable.new.up
-    true  
+    true
   end
 end

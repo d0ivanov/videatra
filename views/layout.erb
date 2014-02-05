@@ -11,18 +11,90 @@
     <%= stylesheet_include_tag "bootstrap.min.css" %>
     <%= stylesheet_include_tag "bootstrap-theme.min.css" %>
     <%= stylesheet_include_tag "video-js.min.css" %>
+    <%= stylesheet_include_tag "application.css"%>
 
     <script type="text/javascript">
       <%= "videojs.options.flash.swf = 'http://#{request.host}/video-js.swf'" %>
     </script>
 	</head>
-	<body>
-		<% if flash[:error] %>
-			<p><%= flash[:error]%></p>
-		<%end %>
-		<% if flash[:notice] %>
-			<p><%= flash[:notice]%></p>
-		<%end %>
-		<%= yield %>
-	</body>
+  <body>
+    <div class="row-fluid">
+      <header>
+        <div class="container">
+          <div id="header-left" class="span5">
+            <div class="span4">
+              <h1 id="logo"><a href="/"><img alt="FLLCasts" src="/images/logo.svg" xmlns="http://www.w3.org/2000/svg" /></a></h1>
+            </div>
+            <div class="span7">
+              <form accept-charset="UTF-8" action="/videos/search" id="search-form" method="get">
+                <input id="search-field" name="search" placeholder="Search here..." type="text" />
+                <input id="search-button" type="submit" value="Search" />
+              </form>
+            </div>
+          </div>
+          <div id="header-right" class="span7">
+            <nav>
+              <ul class="nav-group">
+                <li><a href="/videos"><i class="icon-film icon-white"></i>Videos</a></li>
+              </ul>
+              <% if current_user %>
+                <div id="logged-in" class="nav-group">
+                  <div class="current-user dropdown">
+                    <a href="/account-settings" data-toggle="dropdown">
+                      <span class="avatar"><!-- link to user avatar --></span><%= current_user.email %>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                      <li><a href="/user/profile" tabindex="-1"><i class="icon-white icon-edit"></i>Edit profile</a></li>
+                      <li><a href="/subscriptions/show" id="subscriptions-header" tabindex="-1"><i class="icon-white icon-repeat"></i>Subscriptions</a></li>
+                      <li><a href="/user/account" tabindex="-1"><i class="icon-white icon-cog"></i>Account settings</a></li>
+                      <li><a href="/logout" data-method="delete" rel="nofollow" tabindex="-1"><i class="icon-white icon-off"></i>Log out</a></li>
+                    </ul>
+                  </div>
+                </div>
+              <% else %>
+                <ul id="not-logged-in" class="nav-group">
+                  <li><a href="/log_in"><i class="icon-circle-arrow-right icon-white"></i>Login</a></li>
+                  <li><a href="/sign_up"><i class="icon-check icon-white"></i>Register</a></li>
+                </ul>
+              <% end %>
+            </nav>
+          </div>
+        </div>
+      </header>
+    </div>
+    <% flash.each do |name, msg| %>
+      <div class="row-fluid flash flash-notice">
+        <div class="container">
+          <i class="icon-info-sign"></i><%= msg %>
+        </div>
+      </div>
+    <% end %>
+    <div id="main-content">
+      <%= yield %>
+    </div>
+    <footer class="row-fluid">
+      <div class="container">
+        <div class="span8">
+          <div class="footer-padding">
+            <ul class="footer-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="http://blog.fllcasts.com/">Blog</a></li>
+              <li><a href="http://www.fllcasts.com/subscriptions/show" id="subscriptions-footer">Subscriptions</a></li>
+              <li><a href="/terms_of_use">Terms of Use</a></li>
+              <li><a href="/privacy_policy">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">Copyright &copy; 2014 Videatra. All rights reserved.</p><!-- Should have a PlugMan hook here -->
+          </div>
+        </div>
+        <div class="span4">
+          <ul class="social footer-padding">
+            <!-- Should have a PlugMan hook here -->
+            <li><a href="https://www.facebook.com/fllcasts"><img alt="Facebook" src="/images/social/facebook.png" title="Like our page on Facebook" /></a></li>
+            <li><a href="https://vimeo.com/fllcasts"><img alt="Vimeo" src="/images/social/vimeo.png" title="Follow us on Vimeo" /></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

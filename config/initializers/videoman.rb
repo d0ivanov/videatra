@@ -1,6 +1,6 @@
 require 'sinatra/videoman'
 
-class Videatra
+class Videatra < Sinatra::Base
   Sinatra::Videoman::Manager.config do |config|
     config[:default_locales] = settings.locales[:default_locale]
 #    config[:locales_dir] = settings.locales[:locales_dir]

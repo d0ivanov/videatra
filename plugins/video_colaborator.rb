@@ -27,6 +27,6 @@ PlugMan.define :video_colaborator do
   end
 
   def event_filter_failed path, response
-    response.redirect "/login"
+    response.redirect "/log_in"
   end
 end
