@@ -38,7 +38,7 @@
               <ul class="nav-group">
                 <li><a href="/videos"><i class="icon-film icon-white"></i>Videos</a></li>
               </ul>
-              <% if current_user %>
+              <% if authenticated? %>
                 <div id="logged-in" class="nav-group">
                   <!-- Should have a PlugMan hook here -->
                   <div class="current-user dropdown">

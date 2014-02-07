@@ -18,7 +18,7 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.1)
     atomic (1.1.14)
-    authstrategies (0.1.4)
+    authstrategies (0.1.42)
       activerecord
       bcrypt-ruby
       i18n
@@ -74,6 +74,8 @@ GEM
       sinatra
     sinatra-partial (0.4.0)
       sinatra
+    sinatra-support (1.2.2)
+      sinatra (>= 1.0)
     sinatra-videoman (0.0.2)
       activerecord
       bcrypt-ruby
@@ -94,7 +96,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
-  authstrategies (= 0.1.4)
+  authstrategies (= 0.1.42)
   bcrypt-ruby
   carrierwave
   i18n
@@ -112,5 +114,6 @@ DEPENDENCIES
   sinatra-flash
   sinatra-paginate
   sinatra-partial
+  sinatra-support
   sinatra-videoman (= 0.0.2)
   warden

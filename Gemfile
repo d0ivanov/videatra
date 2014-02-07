@@ -10,6 +10,7 @@ gem 'sinatra-contrib'
 gem 'sinatra-partial'
 gem 'sinatra-advanced-routes', :require => 'sinatra/advanced_routes'
 gem 'sinatra-paginate'
+gem 'sinatra-support'
 
 gem 'i18n'
 
@@ -33,5 +34,5 @@ end
 gem 'warden'
 gem 'carrierwave'
 
-gem 'authstrategies', '0.1.4'
+gem 'authstrategies', '0.1.42'
 gem 'sinatra-videoman', '0.0.2'

@@ -5,6 +5,7 @@ require 'sinatra/config_file'
 require 'sinatra/cookies'
 require 'sinatra/advanced_routes'
 require 'sinatra/paginate'
+require 'sinatra/support'
 require 'rack/contrib'
 require 'i18n'
 require 'i18n/backend/fallbacks'
@@ -26,6 +27,7 @@ class Videatra < Sinatra::Base
 
 	helpers Rack::Utils
 	helpers	Sinatra::Cookies
+  helpers Sinatra::CountryHelpers
 
   enable :sessions
 
