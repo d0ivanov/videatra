@@ -16,8 +16,12 @@ PlugMan.define :main do
     end
   end
 
-  def filter_site_title
-    title = "::"
+  #Assumes you views are located in a views subdirectory
+  #of a directory with the same name as your plugin file.
+  #e.g if you call this from a file named "vim", your
+  #view should be located int vim/views
+  def render_path erb
+    File.join "../plugins", File.basename(caller[0][/[^:]+/],".rb"), "views", erb
   end
 end
 

@@ -6,4 +6,8 @@ module Views
   def stylesheet_include_tag file
     "<link rel=\"stylesheet\" href=\"http://#{request.host_with_port}/stylesheets/#{file}\" type=\"text/css\" />"
   end
+
+  def page
+    [params[:page].to_i - 1, 0].max
+  end
 end

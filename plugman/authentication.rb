@@ -29,7 +29,7 @@ def auth_hooks
   end
 
   Authstrategies::Manager.after_login_failure do |request, response|
-    MAIN.call :event_after_login_failure
+    MAIN.call :event_after_login_failure, request, response
   end
 
   Authstrategies::Manager.before_logout do |user, auth, opts|

@@ -4,6 +4,7 @@ require 'sinatra/partial'
 require 'sinatra/config_file'
 require 'sinatra/cookies'
 require 'sinatra/advanced_routes'
+require 'sinatra/paginate'
 require 'rack/contrib'
 require 'i18n'
 require 'i18n/backend/fallbacks'
@@ -13,6 +14,7 @@ class Videatra < Sinatra::Base
   register Sinatra::ConfigFile
   register Sinatra::Partial
   register Sinatra::Flash
+  register Sinatra::Paginate
 
   config_file './config/application.yml'
 
@@ -45,5 +47,11 @@ class Videatra < Sinatra::Base
         plugin.filter_before_route(current_user, route.path, params, response)
       end
     end
+  end
+
+  after do
+    #So that we don't get too many connections
+    #up at the same time
+    ActiveRecord::Base.connection.close
   end
 end

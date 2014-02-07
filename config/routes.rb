@@ -14,6 +14,17 @@ class Videatra < Sinatra::Base
     erb :'users/signup'
   end
 
+  #like /videos/search?search=Some video name
+  get '/videos/search/?' do
+    redirect back if params['search'].empty?
+
+    Struct.new('Result', :total, :size, :videos)
+    @videos = Video.where("title LIKE ?", "%#{params['search']}%").load.limit(10).offset(page*10)
+    @videos = Struct::Result.new(Video.count, @videos.count, @videos)
+
+    erb :'videos/search'
+  end
+
   get '/_reload_plugins' do
     PlugMan.stop_all_plugins
     PlugMan.registered_plugins.delete_if { |k, v| k != :root and k != :main }

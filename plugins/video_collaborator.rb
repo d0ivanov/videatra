@@ -1,4 +1,4 @@
-PlugMan.define :video_colaborator do
+PlugMan.define :video_collaborator do
   author 'Dobromir Ivanov'
   version '0.0.1'
   extends ({guardian: [:filter_conditions, :event_filter_failed]})
@@ -6,13 +6,13 @@ PlugMan.define :video_colaborator do
   extension_points []
   params()
 
-  filter_by_role = Proc.new { |user|
+  filter_by_role = Proc.new do |user|
     (user && !(user.user_roles & ["admin", "colaborator"]).empty?)
-  }
+  end
 
-  subscriber_role = Proc.new { |user|
+  subscriber_role = Proc.new do |user|
     (user && !(user.user_roles & ["admin", "subscriber", "colaborator"]).empty?)
-  }
+  end
 
   @protected_routes = {
     "/videos/upload/?"   => filter_by_role,

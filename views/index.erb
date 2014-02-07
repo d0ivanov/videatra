@@ -1,1 +1,19 @@
-<%= erb :'videos/list' %>
+<section id="landing" class="row-fluid">
+    <div class="container">
+      <div id="landing-padding">
+        <!--Should have a PlugMan hook here -->
+      </div>
+    </div>
+</section>
+
+<section id="latest-videos" class="row-fluid">
+  <div class="container">
+    <div class="heading">
+      <a href="/videos" class="pull-right">See more videos <i class="icon-chevron-right"></i></a>
+      <h2>Latest videos</h2>
+    </div>
+    <div class="row-fluid">
+      <%= partial :'videos/video_link', :collection => @video_links%>
+    </div>
+  </div>
+</section>

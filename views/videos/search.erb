@@ -1,0 +1,17 @@
+<section id="latest-videos" class="row-fluid">
+  <div class="container">
+    <div class="heading">
+      <h2>Videos</h2>
+      <!-- Should have a PlugMan hook here -->
+      <% if @videos.videos.length == 0 %>
+        <h3>Nothing Found</h3>
+      <% end %>
+    </div>
+    <div class="row-fluid">
+      <% @videos.videos.each do |video| %>
+        <%= partial :'videos/video_link', :locals => {:video_link => video} %>
+      <% end %>
+      <% paginate @videos, items_per_page: 10, labels: {first: '«', last: '»'}, renderer: 'erb' %>
+    </div>
+  </div>
+</section>
