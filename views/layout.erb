@@ -43,7 +43,8 @@
                   <!-- Should have a PlugMan hook here -->
                   <div class="current-user dropdown">
                     <a href="/account-settings" data-toggle="dropdown">
-                      <span class="avatar"><!-- link to user avatar --></span><%= current_user.email %>
+                      <!--Should have a PlugMan hook here -->
+                      <span class="avatar"><img src="<%= current_user.profile.avatar.url %>" alt="avatar" /></span><%= current_user.profile.first_name %>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                       <!-- Should have a PlugMan hook here -->
@@ -70,7 +71,7 @@
       </header>
     </div>
     <% flash.each do |name, msg| %>
-      <div class="row-fluid flash flash-notice">
+      <div class="row-fluid flash flash-<%= name %>">
         <div class="container">
           <% if msg.is_a?(Hash) %>
             <% msg.each do |k, v| %>

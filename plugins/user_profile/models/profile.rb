@@ -2,9 +2,9 @@ require_relative 'avatar_uploader'
 
 class Profile < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
 
-  validates :avatar, :first_name, :last_name, presence: true#:country,
+  validates :first_name, :last_name, :country, presence: true
   validate :file_size
 
   def file_size

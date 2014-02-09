@@ -617,7 +617,7 @@ header #header-right nav #not-logged-in a {  border-left: 1px solid #454793 }
   color: inherit;
 }
 .flash a:hover {  text-decoration: underline }
-.flash.flash-alert {  background: #d44 }
+.flash.flash-error{  background: #d44 }
 .flash.flash-notice {
   background: #fc0;
   text-shadow: 1px 1px 0px rgba(255,255,255,0.3);

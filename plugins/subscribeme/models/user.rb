@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :subscription_plans_users
-  has_many :subscription_plans, :through => :subscription_plans_users
+  has_many :subscription_plans_users, dependent: :destroy
+  has_many :subscription_plans, :through => :subscription_plans_users, dependent: :destroy
 
   def subscribed? video
     plans = subscription_plans & video.subscription_plans
