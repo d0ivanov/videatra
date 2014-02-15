@@ -12,6 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20140105151325) do
 
+  create_table "profiles", force: true do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "country"
+    t.string   "avatar"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", force: true do |t|
     t.string "role"
   end
@@ -63,7 +73,7 @@ ActiveRecord::Schema.define(version: 20140105151325) do
 
   create_table "videos", force: true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"

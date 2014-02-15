@@ -9,14 +9,6 @@
                 <label class="placeholder-fallback" for="user_email">E-mail address</label>
                 <input class="input-block-level" id="user_email" name="email" placeholder="E-mail address" size="30" type="email" required />
               </div>
-              <!-- <div class="form-row">
-                <label class="placeholder-fallback" for="user_first_name">First name</label>
-                <input class="input-block-level" id="user_first_name" name="first_name" placeholder="First name" size="30" type="text" required />
-              </div>
-              <div class="form-row">
-                <label class="placeholder-fallback" for="user_last_name">Last name</label>
-                <input class="input-block-level" id="user_last_name" name="last_name" placeholder="Last name" size="30" type="text" required />
-              </div> -->
               <div class="form-row">
                 <label class="placeholder-fallback" for="user_password">Password</label>
                 <input class="input-block-level" id="user_password" name="password" placeholder="Password" size="30" type="password" required />
@@ -26,14 +18,19 @@
                 <input class="input-block-level" id="user_password_confirmation" name="password_confirmation" placeholder="Confirm password" size="30" type="password" required />
               </div>
               <div class="form-row accept-terms">
-                <p>By creating an account, you accept our <a href="/terms_of_use">Terms and Conditions</a>.</p><!-- Should have a PlugMan hook here -->
+                <% PlugMan.extensions(:main, :filter_after_signup_form_text).each do |plugin| %>
+                  <%= plugin.filter_after_signup_form_text %>
+                <% end %>
+                <p>By creating an account, you accept our <a href="/terms_of_use">Terms and Conditions</a>.</p>
               </div>
               <div class="form-row">
                 <input class="button-with-arrow" name="commit" type="submit" value="Create an account" />
               </div>
             </form>
             <div class="helper-links">
-              <!-- Should have a PlugMan hook here -->
+              <% PlugMan.extensions(:main, :filter_signup_helper_links).each do |plugin| %>
+                <%= plugin.filter_signup_helper_links %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -41,8 +38,13 @@
           <div class="login-account-info">
             <div class="account-description">
               <h3>Have an account?</h3>
-              <p>Please register, we need you....</p><!-- Should have a PlugMan hook here -->
+              <% PlugMan.extensions(:main, :filter_signup_description).each do |plugin| %>
+                <%= plugin.filter_signup_description %>
+              <% end %>
             </div>
+            <% PlugMan.extensions(:main, :filter_signup_aside).each do |plugin| %>
+              <%= plugin.filter_signup_aside %>
+            <% end %>
             <a href="/sign_in" class="account-link">Log in with your <br/>Videatra account</a>
           </div>
         </div>

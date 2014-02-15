@@ -1,0 +1,9 @@
+<div id="user-subnav" class="stripe">
+  <div class="container">
+  </div>
+</div>
+<% if %w[videos subscriptions platform].include?(params[:view]) %>
+  <%= partial(("../plugins/administrator/views/#{params[:view]}").to_sym) %>
+<% else %>
+  <%= partial(("../plugins/administrator/views/videos").to_sym) %>
+<% end %>

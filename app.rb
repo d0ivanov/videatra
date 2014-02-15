@@ -47,7 +47,7 @@ class Videatra < Sinatra::Base
     before route.path do
       authenticate! :remember_me if cookies["authstrategies"]
       guardian = PlugMan.registered_plugins[:guardian]
-      guardian.filter_before_route(current_user, request.path_info, params, response)
+      guardian.filter_before_route(current_user, route.path, params, response)
     end
   end
 

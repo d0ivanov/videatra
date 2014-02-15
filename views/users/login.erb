@@ -14,7 +14,6 @@
                 <input class="input-block-level" id="user_password" name="password" placeholder="Password" size="30" type="password" required />
               </div>
               <div class="form-row checkbox-row">
-                <!-- <input name="remember_me" type="hidden" value="0" /> -->
                 <input id="user_remember_me" name="remember_me" type="checkbox"/>
                 <span class="label-container"><label for="user_remember_me">Remember me</label></span>
               </div>
@@ -23,17 +22,24 @@
               </div>
             </form>
             <div class="helper-links">
-              <!-- Should have PlugMan hook here -->
+              <% PlugMan.extensions(:main, :filter_login_helper_links).each do |plugin| %>
+                <%= plugin.filter_login_helper_links %>
+              <% end %>
             </div>
           </div>
         </div>
         <div class="span4 offset1">
           <div class="login-account-info">
             <div class="account-description">
-              <h3><!-- Should have PlugMan hook here -->Don't have an account yet?</h3>
-              <p>Please register! We need you!.</p>
+              <h3>Don't have an account yet?</h3>
+              <% PlugMan.extensions(:main, :filter_login_account_information).each do |plugin| %>
+                <%= plugin.filter_login_account_information %>
+              <% end %>
             </div>
             <a href="/sign_up" class="account-link">Create an account</a>
+            <% PlugMan.extensions(:main, :filter_login_aside).each do |plugin| %>
+              <%= plugin.filter_login_aside%>
+            <% end %>
           </div>
         </div>
       </div>

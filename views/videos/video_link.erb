@@ -17,7 +17,9 @@
         </div>
       </div>
       <ul id="episode-info">
-        <!-- Should have PlugMan hook here -->
+        <% PlugMan.extensions(:main, :filter_video_info).each do |plugin| %>
+          <%= plugin.filter_video_info video_link.description %>
+        <% end %>
       </ul>
       <div class="form-actions">
         <div class="watch">

@@ -4,9 +4,10 @@ PlugMan.define :main do
   extends({root: [:root]})
   requires []
   #should be symbols
-  extension_points [:filter_before_route, :filter_site_title, :filter_header_logo,
-                    :filter_header_menu, :filter_footer, :filter_page_title,
-                    :filter_video_title, :filter_video_subtitles, :filter_video_meta,
+  extension_points [:filter_before_route, :filter_title, :filter_header_logo,
+                    :filter_header, :filter_loged_in_header_menu, :filter_not_loged_in_header_menu,
+                    :filter_footer_menu, :filter_footer, :filter_footer_social, :filter_landing,
+                    :filter_index_heading
                    ]
   params()
 
