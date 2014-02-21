@@ -30,5 +30,5 @@ upload_spec:
   thumbnails:
     upload_dir: /public/uploads/thumbnails
     max_file_size: 2
-    allowed_extensions: [jpg, jpeg, bmp]
+    allowed_extensions: [jpg, jpeg, bmp, png]
 
