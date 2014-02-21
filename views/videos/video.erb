@@ -1,5 +1,5 @@
 <video id="video" class="video-js vjs-default-skin vjs-big-play-centered"
-  controls preload="auto" width="600" height="390">
+  controls preload="auto" width="620" height="395">
     <% video.video_files.each do |source| %>
       <source src=<%= source.file.url %> type=<%= source.content_type %> />
     <% end %>
