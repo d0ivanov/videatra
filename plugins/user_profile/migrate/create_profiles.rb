@@ -1,7 +1,7 @@
 class CreateProfiles < ActiveRecord::Migration
 
   def up
-    if !Profile.table_exists?
+    if !connection.table_exists? "profiles"
       create_table :profiles do |t|
         t.belongs_to :user
         t.string :first_name
