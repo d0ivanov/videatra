@@ -57,3 +57,27 @@ class Videatra < Sinatra::Base
     ActiveRecord::Base.connection.close
   end
 end
+
+def reload_plugins
+  PlugMan.stop_all_plugins
+  PlugMan.registered_plugins.delete_if { |k, v| k != :root and k != :main }
+  PlugMan.load_plugins './plugins'
+  PlugMan.start_all_plugins
+  auth_hooks
+  video_hooks
+end
+
+# A new thread that is looping and on every 10 secs change if
+# the list of .rb files inside plugins/ is changed. If changed
+# we call reload_plugins
+Thread.new do
+  files = Dir.glob "plugins/*.rb"
+  loop do
+    new_files = Dir.glob "plugins/*.rb"
+    if new_files != files
+      reload_plugins
+      files = new_files
+    end
+    sleep(10)
+  end
+end
