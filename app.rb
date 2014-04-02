@@ -71,9 +71,9 @@ end
 # the list of .rb files inside plugins/ is changed. If changed
 # we call reload_plugins
 Thread.new do
-  files = Dir.glob "plugins/*.rb"
+  files = Dir.glob "plugins/user_plugins/*.rb"
   loop do
-    new_files = Dir.glob "plugins/*.rb"
+    new_files = Dir.glob "plugins/user_plugins/*.rb"
     if new_files != files
       reload_plugins
       files = new_files
