@@ -1,3 +1,28 @@
+PATH
+  remote: ~/Programming/Ruby/authstrategies
+  specs:
+    authstrategies (0.1.42)
+      activerecord
+      bcrypt-ruby
+      i18n
+      protected_attributes
+      rack-contrib
+      sinatra
+      sinatra-flash
+      warden
+
+PATH
+  remote: ~/Programming/Ruby/sinatra-videoman
+  specs:
+    sinatra-videoman (0.0.2)
+      activerecord
+      bcrypt-ruby
+      carrierwave
+      i18n
+      protected_attributes
+      sinatra
+      sinatra-partial
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -18,15 +43,6 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.1)
     atomic (1.1.14)
-    authstrategies (0.1.42)
-      activerecord
-      bcrypt-ruby
-      i18n
-      protected_attributes
-      rack-contrib
-      sinatra
-      sinatra-flash
-      warden
     backports (3.5.0)
     bcrypt-ruby (3.1.2)
     builder (3.1.4)
@@ -39,7 +55,6 @@ GEM
     minitest (4.7.5)
     multi_json (1.8.4)
     mysql2 (0.3.15)
-    pg (0.17.1)
     protected_attributes (1.0.5)
       activemodel (>= 4.0.1, < 5.0)
     rack (1.5.2)
@@ -76,14 +91,6 @@ GEM
       sinatra
     sinatra-support (1.2.2)
       sinatra (>= 1.0)
-    sinatra-videoman (0.0.2)
-      activerecord
-      bcrypt-ruby
-      carrierwave
-      i18n
-      protected_attributes
-      sinatra
-      sinatra-partial
     thread_safe (0.1.3)
       atomic
     tilt (1.4.1)
@@ -96,12 +103,11 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
-  authstrategies (= 0.1.42)
+  authstrategies!
   bcrypt-ruby
   carrierwave
   i18n
   mysql2
-  pg
   protected_attributes
   rack
   rack-contrib
@@ -115,5 +121,5 @@ DEPENDENCIES
   sinatra-paginate
   sinatra-partial
   sinatra-support
-  sinatra-videoman (= 0.0.2)
+  sinatra-videoman!
   warden

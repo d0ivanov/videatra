@@ -15,12 +15,13 @@ cookies:
 pathspec:
   authentication:
     after_login: /
+    after_login_failure: /log_in
     after_logout: /
     after_signup: /
   videos:
     after_save: /
     after_update: /
-    after_delete: /
+    after_delete: /administrator
 
 upload_spec:
   videos:

@@ -1,0 +1,32 @@
+<article class="episode-partial span4">
+    <div class="episode sheet">
+      <div class="screenshot">
+        <a href="<%= "/videos/edit/#{video_link.id}" %>">
+          <img alt="<%= video_link.title %>" class="full-width top episode-image" src="<%= video_link.thumbnail.url %>" />
+        </a>
+      </div>
+      <div class="description-container collapsed">
+        <div class="inside-sheet">
+          <h3>
+            <a href="<%= "/videos/edit/#{video_link.id}" %>" ><%= video_link.title %></a>
+          </h3>
+          <div class="description">
+            <p><%= video_link.description %></p>
+          </div>
+        </div>
+      </div>
+      <ul id="episode-info">
+        <% PlugMan.extensions(:main, :filter_video_info).each do |plugin| %>
+          <%= plugin.filter_video_info video_link %>
+        <% end %>
+      </ul>
+      <div class="form-actions">
+        <form method="post" action="<%= "/videos/delete/#{video_link.id}" %>" id="delete-video">
+          <div class="watch">
+            <a href="<%= "/videos/edit/#{video_link.id}" %>" class="btn btn-action">Edit</a>
+            <a href="<%= "javascript:;" %>" class="btn btn-danger" onclick="$('#delete-video').submit()">Delete</a>
+          </div>
+      </form>
+      </div>
+    </div>
+</article>

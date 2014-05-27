@@ -4,8 +4,9 @@ class CreateSubscriptionPlan < ActiveRecord::Migration
     if !SubscriptionPlan.table_exists?
       create_table :subscription_plans do |t|
         t.string :name
+        t.text :description
         t.integer :duration
-        t.integer :price
+        t.float :price
       end
 
       create_table :subscription_plans_videos do |t|
@@ -18,6 +19,7 @@ class CreateSubscriptionPlan < ActiveRecord::Migration
         t.belongs_to :subscription_plan
         t.timestamps
       end
+      SubscriptionPlan.new(name: 'Free', duration: 365, price: 0).save!
     end
   end
 

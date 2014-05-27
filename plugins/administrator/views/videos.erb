@@ -1,1 +1,18 @@
-<%= partial :'videos/video_link', :collection => @video_links %>
+<div class="row-fluid">
+  <div class="container">
+    <div id="content" class="span12">
+      <ul>
+        <li><a href="/videos/upload" class="btn btn-action">Upload</a></li>
+      </ul>
+      <div class="episodes">
+        <% @video_links.each_slice(3) do |row| %>
+          <div class="row-fluid">
+          <% row.each do |video| %>
+            <%= partial :'../plugins/administrator/views/video_link', :collection => @video_links %>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,13 @@
 <div id="user-subnav" class="stripe">
   <div class="container">
+      <ul>
+        <!-- Should have a PlugMan hook here -->
+        <li><a href="/administrator#videos"><i class="icon-white icon-edit"></i>Videos</a></li>
+        <li><a href="/administrator#subscriptions"><i class="icon-white icon-repeat"></i>Subscriptions</a></li>
+      </ul>
   </div>
 </div>
-<% if %w[videos subscriptions platform].include?(params[:view]) %>
+<% if %w[videos subscriptions].include?(params[:view]) %>
   <%= partial(("../plugins/administrator/views/#{params[:view]}").to_sym) %>
 <% else %>
   <%= partial(("../plugins/administrator/views/videos").to_sym) %>

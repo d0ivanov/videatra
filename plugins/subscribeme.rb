@@ -32,10 +32,27 @@ PlugMan.define :subscribeme do
 
   def filter_conditions current_user, path, params
     return true if (filter = @protected_routes[path]).nil?
-    return filter.call(current_user, params)
+    filter.call(current_user, params)
   end
 
   def event_filter_failed path, response
     response.redirect "/subscribe"
+  end
+
+  Videatra.get "/subscribe/?" do
+    flash[:error] = "Plugin not activated!"
+    redirect back
+  end
+
+  Videatra.get "/user/subscriptions/?" do
+    @subscriptions = current_user.subscription_plans
+    erb MAIN.render_path("subscriptions").to_sym
+  end
+
+  Videatra.post "/user/subscriptions/delete/:id" do
+    plan = current_user.subscription_plans.each do |plan|
+      plan if plan.id == params[:id]
+    end
+    plan.destroy!
   end
 end
