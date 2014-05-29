@@ -12,8 +12,6 @@
     <%= javascript_include_tag "video.js" %>
     <%= javascript_include_tag "bootstrap.min.js" %>
 
-<!--<= stylesheet_include_tag "bootstrap.min.css" %>-->
-<!--<= stylesheet_include_tag "bootstrap-theme.min.css" %> -->
     <%= stylesheet_include_tag "video-js.min.css" %>
     <%= stylesheet_include_tag "application.css"%>
 
@@ -27,27 +25,25 @@
         <div class="container">
           <div id="header-left" class="span5">
             <div class="span4">
-              <h1><!--id="logo" -->
+              <h1 id="logo">
                 <% PlugMan.extensions(:main, :filter_header_logo).each do |plugin| %>
                   <%= plugin.filter_header_layout_logo %>
                 <%end %>
-                Videatra
               </h1>
             </div>
             <div class="span7">
               <% PlugMan.extensions(:main, :filter_header).each do |plugin| %>
-                <%= plugin.filter_layout_header %>
+                <%= plugin.filter_header current_user %>
               <% end %>
-              <form accept-charset="UTF-8" action="/videos/search" id="search-form" method="get">
-                <input id="search-field" name="search" placeholder="Search here..." type="text" required />
-                <input id="search-button" type="submit" value="Search" />
-              </form>
             </div>
           </div>
           <div id="header-right" class="span7">
             <nav>
-              <ul class="nav-group">
+              <ul id="not-logged-in" class="nav-group">
                 <li><a href="/videos"><i class="icon-film icon-white"></i>Videos</a></li>
+                <% PlugMan.extensions(:main, :filter_header_menu).each do |plugin| %>
+                  <%= plugin.filter_header_menu %>
+                <% end %>
               </ul>
               <% if authenticated? %>
                 <div id="logged-in" class="nav-group">
@@ -57,17 +53,16 @@
                   <div class="current-user dropdown">
                     <a href="/account-settings" data-toggle="dropdown">
                       <% PlugMan.extensions(:main, :filter_header_menu_dropdown).each do |plugin| %>
-                        <%= plugin.filter_header_menu_dropdown %>
+                        <%= plugin.filter_header_menu_dropdown current_user %>
                       <% end %>
-                      <span class="avatar"><img src="<%= current_user.profile.avatar.url %>" alt="avatar" /></span><%= current_user.profile.first_name %>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                       <% PlugMan.extensions(:main, :filter_user_dropdown_menu).each do |plugin| %>
                         <%= plugin.filter_user_dropdown_menu current_user %>
                       <% end %>
-                      <li><a href="/user/profile" tabindex="-1"><i class="icon-white icon-edit"></i>Edit profile</a></li>
-                      <li><a href="/subscriptions/show" id="subscriptions-header" tabindex="-1"><i class="icon-white icon-repeat"></i>Subscriptions</a></li>
-                      <li><a href="/user/account" tabindex="-1"><i class="icon-white icon-cog"></i>Account settings</a></li>
+                     <!--
+                      <li><a href="/user/subscriptions" id="subscriptions-header" tabindex="-1"><i class="icon-white icon-repeat"></i>Subscriptions</a></li>
+                     -->
                       <li><a href="/logout" data-method="delete" rel="nofollow" tabindex="-1"><i class="icon-white icon-off"></i>Log out</a></li>
                     </ul>
                   </div>

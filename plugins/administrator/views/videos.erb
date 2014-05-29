@@ -8,7 +8,7 @@
         <% @video_links.each_slice(3) do |row| %>
           <div class="row-fluid">
           <% row.each do |video| %>
-            <%= partial :'../plugins/administrator/views/video_link', :collection => @video_links %>
+            <%= partial :'../plugins/administrator/views/video_link', :locals => {:video => video } %>
           <% end %>
           </div>
         <% end %>

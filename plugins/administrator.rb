@@ -12,6 +12,9 @@ PlugMan.define :administrator do
 
   @protected_routes = {
     "/administrator/?"   => filter_by_role,
+    "/administrator/subscriptions/?"   => filter_by_role,
+    "/administrator/subscriptions/edit/:id/?"   => filter_by_role,
+    "/administrator/subscriptions/delete/:id"   => filter_by_role,
   }
 
   def filter_conditions current_user, path, params
@@ -20,6 +23,7 @@ PlugMan.define :administrator do
   end
 
   def event_filter_failed path, response
+    throw :halt, 401
     response.redirect "/log_in"
   end
 
@@ -32,6 +36,57 @@ PlugMan.define :administrator do
   Videatra.get '/administrator/?' do
     @video_links = Video.all
     erb MAIN.render_path('administrator_layout').to_sym
+  end
+
+  Videatra.get '/administrator/subscriptions/new' do
+    erb MAIN.render_path('new_plan').to_sym
+  end
+
+  Videatra.post '/administrator/subscriptions/create' do
+    @plan = SubscriptionPlan.new(params[:plan])
+    if @plan.save
+      flash[:notice] = "Plan created!"
+    else
+      flash[:error] = "Could not create plan!"
+    end
+    redirect "/administrator/subscriptions"
+  end
+
+  Videatra.get '/administrator/subscriptions/edit/:id/?' do
+    @plan = SubscriptionPlan.find_by_id params[:id]
+    erb MAIN.render_path('edit_plan').to_sym
+  end
+
+  Videatra.post '/administrator/subscriptions/edit/:id' do
+    @plan = SubscriptionPlan.find_by_id params[:id]
+    if @plan
+      @plan.update_attributes params[:plan]
+      flash[:notice] = "Plan updated!"
+    else
+      flash[:error] = "Plan not found!"
+    end
+    redirect "/administrator/subscriptions"
+  end
+
+  Videatra.post '/administrator/subscriptions/delete/:id' do
+    @plan = SubscriptionPlan.find_by_id params[:id]
+    if @plan
+      @plan.destroy
+      flash[:notice] = "Plan deleted!"
+    else
+      flash[:error] = "Plan not found!"
+    end
+    redirect "/administrator/subscriptions"
+  end
+
+  Videatra.get '/administrator/subscriptions/?' do
+    @plans = SubscriptionPlan.all
+    if !@plans.nil?
+      erb MAIN.render_path('subscriptions').to_sym
+    else
+      flash[:notice] = "No plans!"
+      redirect "/administrator"
+    end
   end
 
   edit_video_route = Videatra.get "/videos/edit/:id/?" do

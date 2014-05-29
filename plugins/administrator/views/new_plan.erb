@@ -1,0 +1,46 @@
+<div id="user-subnav" class="stripe">
+  <div class="container">
+    <ul>
+      <li><a href="/administrator?view=videos" class="current"><i class="icon-white icon-edit"></i>Videos</a></li>
+      <li><a href="/administrator?view=subscriptions"><i class="icon-white icon-repeat"></i>Subscriptions</a></li>
+    </ul>
+  </div>
+</div>
+<div class="row-fluid service">
+  <div class="container">
+    <h2>Profile settings</h2>
+    <div class="row-fluid">
+      <div class="span7">
+        <div class="sheet">
+          <div id="edit-profile-form" class="service-form form-light">
+            <form accept-charset="UTF-8" action="/administrator/subscriptions/create" class="edit_user" method="post">
+              <div style="margin:0;padding:0;display:inline">
+                <div class="inside-sheet">
+                  <div class="form-row">
+                    <label for="name">Name</label>
+                    <input class="input-block-level" id="name" name="plan[name]" size="30" type="text" required/>
+                  </div>
+                  <div class="form-row">
+                    <label for="description">Description</label>
+                    <textarea class="input-block-level" id="description" name="plan[description]"></textarea>
+                  </div>
+                  <div class="form-row">
+                    <label for="price">Price</label>
+                    <input type="text" name="plan[price]" id="price" class="input-block-level" required />
+                  </div>
+                  <div class="form-row">
+                    <label for="duration">Duration</label>
+                    <input type ="text" id="duration" name="plan[duration]" required />
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions">
+                <input class="btn btn-action" type="submit" value="Save changes" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

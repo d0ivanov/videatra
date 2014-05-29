@@ -1,0 +1,19 @@
+<div class="row-fluid">
+  <div class="container">
+    <div id="content" class="span12">
+      <ul>
+        <li><a href="/administrator/subscriptions/new" class="btn btn-action">New Plan</a></li>
+      </ul>
+      <div class="episodes">
+        <%  %>
+        <% @plans.each_slice(3) do |row| %>
+          <div class="row-fluid">
+          <% row.each do |plan| %>
+            <%= partial :'../plugins/administrator/views/plan_link', :locals => {:plan => plan} %>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

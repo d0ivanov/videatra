@@ -36,6 +36,7 @@ PlugMan.define :subscribeme do
   end
 
   def event_filter_failed path, response
+    throw :halt, 401
     response.redirect "/subscribe"
   end
 

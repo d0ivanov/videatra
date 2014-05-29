@@ -14,28 +14,23 @@
           <div class="span7">
             <div class="sheet">
               <div id="edit-profile-form" class="service-form form-light">
-                <form accept-charset="UTF-8" action="/videos/edit/<%= params['id']%>" class="edit_user" id="edit_user" method="post" enctype="multipart/form-data">
+                <form accept-charset="UTF-8" action="/administrator/subscriptions/edit/<%= params['id']%>" class="edit_user" method="post">
                   <div class="inside-sheet">
                     <div class="form-row">
-                      <label for="thumbnail">Thumbnail</label>
-                      <img src="<%= @video.thumbnail.url %>" alt="<%= @video.title %>" />
-                      <input id="thumbnail" type="file" name="video[thumbnail]" />
+                      <label for="name">Name</label>
+                      <input id="name" type="text" name="plan[name]" value="<%= @plan.name %>" required />
                     </div>
                     <div class="form-row">
-                      <label for="video_title">Title</label>
-                      <input class="input-block-level" id="video_title" name="video[title]" size="30" type="text" value="<%= @video.title %>" />
+                      <label for="description">Description</label>
+                      <textarea class="input-block-level" id="description" name="plan[description]"><%= @plan.description %></textarea>
                     </div>
                     <div class="form-row">
-                      <label for="video_description">Description</label>
-                      <textarea class="input-block-level" id="video_description" name="video[description]"><%= @video.description %></textarea>
+                      <label for="price">Price</label>
+                      <textarea class="input-block-level" id="price" name="plan[price]"><%= @plan.price %></textarea>
                     </div>
                     <div class="form-row">
-                      <label for="video_subscription_plan">Subscription Plan</label>
-                      <select multiple required name="video[subscription_plans][]" selected="<%= @video.subscription_plans.first.name %>">
-                         <% @subscription_plans.each do |plan| %>
-                           <option value="<%= plan.id %>"><%= plan.name %></option>
-                         <% end %>
-                       </select>
+                      <label for="duration">Duration</label>
+                      <input type="text" id="duration" class="input-block-level" name="plan[duration]" value="<%= @plan.duration %>" />
                     </div>
                   </div>
                   <div class="form-actions">

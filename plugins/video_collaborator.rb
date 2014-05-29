@@ -1,7 +1,9 @@
 PlugMan.define :video_collaborator do
   author 'Dobromir Ivanov'
   version '0.0.1'
-  extends ({guardian: [:filter_conditions, :event_filter_failed], main: [:event_after_video_save, :event_after_video_update]})
+  extends ({guardian: [:filter_conditions, :event_filter_failed],
+            main: [:event_after_video_save, :event_after_video_update, :filter_header]
+           })
   requires [:main, :rolify, :subscribeme]
   extension_points []
   params()
@@ -36,6 +38,7 @@ PlugMan.define :video_collaborator do
   end
 
   def event_filter_failed path, response
+    throw :halt, 401
     response.redirect "/log_in"
   end
 
@@ -45,5 +48,12 @@ PlugMan.define :video_collaborator do
 
   def event_after_video_update video, request, response
     set_video_plans vide, request
+  end
+
+  def filter_header current_user
+    "<form accept-charset=\"UTF-8\" action=\"/videos/search\" id=\"search-form\" method=\"get\">
+      <input id=\"search-field\" name=\"search\" placeholder=\"Search here...\" type=\"text\" required />
+      <input id=\"search-button\" type=\"submit\" value=\"Search\" />
+    </form>"
   end
 end
