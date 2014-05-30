@@ -38,7 +38,7 @@ PlugMan.define :user_profile do
     profile = Profile.new(first_name: 'First Name', last_name: 'Last Name', country: 'BG')
     user.profile = profile
     user.profile.save
-    user.subscription_plans = [SubscriptionPlan.find_by_id(1)]
+    user.subscription_plans = [SubscriptionPlan.find_by_name('Free')]
     user.roles = [Role.find_by_role('subscriber')]
     user.save
   end
