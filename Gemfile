@@ -34,5 +34,5 @@ end
 gem 'warden'
 gem 'carrierwave'
 
-gem 'authstrategies', :git => 'https://github.com/d0ivanov/authstrategies.git'
-gem 'sinatra-videoman', :git => 'https://github.com/d0ivanov/sinatra-videoman.git'
+gem 'authstrategies', '~> 0.1.43'
+gem 'sinatra-videoman', '~> 0.0.3'
