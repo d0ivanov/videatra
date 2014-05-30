@@ -1,0 +1,21 @@
+<article class="episode-partial span4">
+    <div class="episode sheet">
+      <h3><%= plan.name %></h3>
+      <div class="description-container collapsed">
+        <div class="inside-sheet">
+          <div class="description">
+            <p><%= plan.description %></p>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <div class="watch">
+          <% if current_user.subscription_plans.include? plan %>
+            <a href="#" class="btn btn-action">Subscribed</a>
+          <% else %>
+            <a href="#" class="btn btn-action">Subscribe</a>
+        <% end %>
+        </div>
+      </div>
+    </div>
+</article>

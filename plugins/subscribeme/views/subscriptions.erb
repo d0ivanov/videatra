@@ -1,0 +1,26 @@
+<div id="user-subnav" class="stripe">
+  <div class="container">
+    <ul>
+      <!-- Should have a PlugMan hook here -->
+      <li><a href="/user/profile"><i class="icon-white icon-edit"></i> Profile settings</a></li>
+      <li><a href="/user/subscriptions"><i class="icon-white icon-repeat"></i> Subscriptions</a></li>
+      <li><a href="/user/account" class="current"><i class="icon-white icon-cog"></i> Account settings</a></li>
+    </ul>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="container">
+    <div id="content" class="span12">
+      <div class="episodes">
+        <%  %>
+        <% @plans.each_slice(3) do |row| %>
+          <div class="row-fluid">
+          <% row.each do |plan| %>
+            <%= partial :'../plugins/subscribeme/views/plan_link', :locals => {:plan => plan} %>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
