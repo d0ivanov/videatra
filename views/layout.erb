@@ -16,7 +16,7 @@
     <%= stylesheet_include_tag "application.css"%>
 
     <script type="text/javascript">
-      <%= "videojs.options.flash.swf = 'http://#{request.host}/video-js.swf'" %>
+      <%= "videojs.options.flash.swf = 'http://#{request.host}:#{request.port}/video-js.swf'" %>
     </script>
 	</head>
   <body>
