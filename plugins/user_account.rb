@@ -26,7 +26,7 @@ PlugMan.define :user_account do
     return filter.call(current_user)
   end
 
-  def event_filter_failerd path, response
+  def event_filter_failed path, response
     throw :halt, 401
     response.redirect "/sign_in"
   end
@@ -51,10 +51,15 @@ PlugMan.define :user_account do
   end
 
   Videatra.get '/user/account/delete' do
-    current_user.profile.destroy if current_user.profile
-    current_user.subscription_plans.destroy if current_user.subscription_plans
-    currnet_user.destroy
+    current_user.profile.destroy
+    current_user.subscription_plans.each do |plan|
+      current_user.subscription_plans.delete plan
+    end
+    current_user.roles.each do |role|
+      current_user.roles.delete role
+    end
     logout
+    current_user.destroy
     redirect '/'
   end
 end
