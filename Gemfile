@@ -34,5 +34,5 @@ end
 gem 'warden'
 gem 'carrierwave'
 
-gem 'authstrategies', path: '~/Programming/Ruby/authstrategies'
-gem 'sinatra-videoman', path: '~/Programming/Ruby/sinatra-videoman'
+gem 'authstrategies', :git => 'https://github.com/d0ivanov/authstrategies.git'
+gem 'sinatra-videoman', :git => 'https://github.com/d0ivanov/sinatra-videoman.git'
