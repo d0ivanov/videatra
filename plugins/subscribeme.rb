@@ -7,7 +7,7 @@ require_relative "subscribeme/models/subscription_plans_users"
 PlugMan.define :subscribeme do
   author 'Dobromir Ivanov'
   version '0.0.1'
-  extends ({guardian: [:filter_conditions, :event_filter_failed]})
+  extends ({guardian: [:filter_conditions, :event_filter_failed], main: [:filter_user_dropdown_menu]})
   requires [:main, :rolify]
   extension_points []
   params()
@@ -21,8 +21,15 @@ PlugMan.define :subscribeme do
     end
   end
 
+  filter_by_user = Proc.new do |user, params|
+    !user.nil?
+  end
+
   @protected_routes = {
-    "/videos/watch/:id/?" => filter_by_subscription
+    "/videos/watch/:id/?" => filter_by_subscription,
+    "/subscribe/?" => filter_by_user,
+    "/user/subscriptions/?" => filter_by_user,
+    "/user/subscriptions/delete/:id" => filter_by_user,
   }
 
   def start
@@ -40,13 +47,17 @@ PlugMan.define :subscribeme do
     response.redirect "/subscribe"
   end
 
+  def filter_user_dropdown_menu user
+    "<li><a href=\"/user/subscriptions\" tabindex=\"-1\"><i class=\"icon-white icon-edit\"></i>Subscriptions</a></li>"
+  end
+
   Videatra.get "/subscribe/?" do
     flash[:error] = "Plugin not activated!"
     redirect back
   end
 
   Videatra.get "/user/subscriptions/?" do
-    @subscriptions = current_user.subscription_plans
+    @plans = current_user.subscription_plans
     erb MAIN.render_path("subscriptions").to_sym
   end
 

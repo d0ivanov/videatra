@@ -43,11 +43,11 @@ PlugMan.define :video_collaborator do
   end
 
   def event_after_video_save video, request, response
-    set_video_plans vide, request
+    set_video_plans video, request
   end
 
   def event_after_video_update video, request, response
-    set_video_plans vide, request
+    set_video_plans video, request
   end
 
   def filter_header current_user

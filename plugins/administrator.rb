@@ -35,6 +35,7 @@ PlugMan.define :administrator do
 
   Videatra.get '/administrator/?' do
     @video_links = Video.all
+    @plans = SubscriptionPlan.all
     erb MAIN.render_path('administrator_layout').to_sym
   end
 
