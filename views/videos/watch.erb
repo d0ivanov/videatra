@@ -10,7 +10,9 @@
               <%= partial :'videos/video', :locals => {:video => @video} %>
             </div>
             <ul id="episode-info">
-              <!-- There should be PlugMan hook here -->
+              <% PlugMan.extensions(:main, :filter_video_social).each do |plugin| %>
+                <%= plugin.filter_video_social @video, current_user %>
+              <% end %>
             </ul>
             <div id="episode-share" class="collapse row-fluid">
               <div class="inside-sheet">

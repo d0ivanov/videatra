@@ -51,6 +51,13 @@ class Videatra < Sinatra::Base
     end
   end
 
+  before '/_reload_plugins' do
+    if !current_user.has_role? "admin"
+      halt 401, "You need administrator privileges!"
+      redirect "/"
+    end
+  end
+
   after do
     #So that we don't get too many connections
     #up at the same time

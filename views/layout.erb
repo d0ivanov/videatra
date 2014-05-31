@@ -20,6 +20,9 @@
     </script>
 	</head>
   <body>
+    <% PlugMan.extensions(:main, :filter_body_main).each do |plugin| %>
+      <%= plugin.filter_body_main %>
+    <% end %>
     <div class="row-fluid">
       <header>
         <div class="container">

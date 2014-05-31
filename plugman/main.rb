@@ -7,7 +7,7 @@ PlugMan.define :main do
   extension_points [:filter_before_route, :filter_title, :filter_header_logo,
                     :filter_header, :filter_header_menu, :filter_loged_in_header_menu, :filter_not_loged_in_header_menu,
                     :filter_footer_menu, :filter_footer, :filter_footer_social, :filter_landing,
-                    :filter_index_heading
+                    :filter_index_heading, :filter_video_info, :filter_video_social, :filter_body_main
                    ]
   params()
 
