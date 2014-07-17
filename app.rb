@@ -37,9 +37,8 @@ require_relative 'config/initializers/database'
 require_relative 'config/initializers/helpers'
 require_relative 'config/initializers/videoman'
 require_relative 'config/initializers/authstrategies'
+require_relative 'config/initializers/plugman'
 require_relative 'config/routes'
-require_relative 'lib/PlugMan'
-require_relative 'plugman/main'
 
 class Videatra < Sinatra::Base
 

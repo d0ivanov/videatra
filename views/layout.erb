@@ -2,12 +2,14 @@
 <html>
 	<head>
 		<meta charset='utf-8'/>
+    <% PlugMan.extensions(:main, :filter_layout_meta).each do |plugin| %>
+      <%= plugin.filter_layout_meta %>
+    <% end %>
     <title>
-      <% PlugMan.extensions(:main, :filter_title).each do |plugin| %>
-        <%= plugin.filter_title %>
+      <% PlugMan.extensions(:main, :filter_layout_page_title).each do |plugin| %>
+        <%= plugin.filter_ui_page_title %>
       <% end %>
     </title>
-
     <%= javascript_include_tag "jquery-1.11.0.min.js" %>
     <%= javascript_include_tag "video.js" %>
     <%= javascript_include_tag "bootstrap.min.js" %>
@@ -15,115 +17,21 @@
     <%= stylesheet_include_tag "video-js.min.css" %>
     <%= stylesheet_include_tag "application.css"%>
 
+    <% PlugMan.extensions(:main, :filter_layout_includes).each do |plugin| %>
+      <%= plugin.filter_layout_includes %>
+    <% end %>
+
+    <% PlugMan.extensions(:main, :filter_layout_head).each do |plugin| %>
+      <%= plugin.filter_layout_head %>
+    <% end %>
+
     <script type="text/javascript">
       <%= "videojs.options.flash.swf = 'http://#{request.host}:#{request.port}/video-js.swf'" %>
     </script>
 	</head>
   <body>
-    <% PlugMan.extensions(:main, :filter_body_main).each do |plugin| %>
-      <%= plugin.filter_body_main %>
+    <% PlugMan.extensions(:main, :filter_layout_body).each do |plugin| %>
+      <%= plugin.filter_layout_body %>
     <% end %>
-    <div class="row-fluid">
-      <header>
-        <div class="container">
-          <div id="header-left" class="span5">
-            <div class="span4">
-              <h1 id="logo">
-                <% PlugMan.extensions(:main, :filter_header_logo).each do |plugin| %>
-                  <%= plugin.filter_header_layout_logo %>
-                <%end %>
-              </h1>
-            </div>
-            <div class="span7">
-              <% PlugMan.extensions(:main, :filter_header).each do |plugin| %>
-                <%= plugin.filter_header current_user %>
-              <% end %>
-            </div>
-          </div>
-          <div id="header-right" class="span7">
-            <nav>
-              <ul id="not-logged-in" class="nav-group">
-                <li><a href="/videos"><i class="icon-film icon-white"></i>Videos</a></li>
-                <% PlugMan.extensions(:main, :filter_header_menu).each do |plugin| %>
-                  <%= plugin.filter_header_menu %>
-                <% end %>
-              </ul>
-              <% if authenticated? %>
-                <div id="logged-in" class="nav-group">
-                  <% PlugMan.extensions(:main, :filter_loged_in_header_menu).each do |plugin| %>
-                    <%= plugin.filter_loged_in_header_menu %>
-                  <% end %>
-                  <div class="current-user dropdown">
-                    <a href="/account-settings" data-toggle="dropdown">
-                      <% PlugMan.extensions(:main, :filter_header_menu_dropdown).each do |plugin| %>
-                        <%= plugin.filter_header_menu_dropdown current_user %>
-                      <% end %>
-                    </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                      <% PlugMan.extensions(:main, :filter_user_dropdown_menu).each do |plugin| %>
-                        <%= plugin.filter_user_dropdown_menu current_user %>
-                      <% end %>
-                     <!--
-                      <li><a href="/user/subscriptions" id="subscriptions-header" tabindex="-1"><i class="icon-white icon-repeat"></i>Subscriptions</a></li>
-                     -->
-                      <li><a href="/logout" data-method="delete" rel="nofollow" tabindex="-1"><i class="icon-white icon-off"></i>Log out</a></li>
-                    </ul>
-                  </div>
-                </div>
-              <% else %>
-                <ul id="not-logged-in" class="nav-group">
-                  <% PlugMan.extensions(:main, :filter_not_loged_in_header_menu).each do |plugin| %>
-                    <%= plugin.filter_not_loged_in_header_menu%>
-                  <% end %>
-                  <li><a href="/log_in"><i class="icon-circle-arrow-right icon-white"></i>Login</a></li>
-                  <li><a href="/sign_up"><i class="icon-check icon-white"></i>Register</a></li>
-                </ul>
-              <% end %>
-            </nav>
-          </div>
-        </div>
-      </header>
-    </div>
-    <% flash.each do |name, msg| %>
-      <div class="row-fluid flash flash-<%= name %>">
-        <div class="container">
-          <% if msg.is_a?(Hash) %>
-            <% msg.each do |k, v| %>
-              <p><i class="icon-info-sign"></i><%= "#{k}: #{v[0]}" %></p>
-            <% end %>
-          <% else %>
-            <i class="icon-info-sign"></i><%= msg %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-    <div id="main-content">
-      <%= yield %>
-    </div>
-    <footer class="row-fluid">
-      <div class="container">
-        <div class="span8">
-          <div class="footer-padding">
-            <ul class="footer-nav">
-              <% PlugMan.extensions(:main, :filter_footer_menu).each do |plugin| %>
-                <%= plugin.filter_footer_menu %>
-              <% end %>
-              <li><a href="/">Home</a></li>
-            </ul>
-            <% PlugMan.extensions(:main, :filter_footer).each do |plugin| %>
-              <%= plugin.filter_footer %>
-            <% end %>
-            <p class="copyright">Copyright &copy; 2014 Videatra. All rights reserved.</p>
-          </div>
-        </div>
-        <div class="span4">
-          <ul class="social footer-padding">
-            <% PlugMan.extensions(:main, :filter_footer_social).each do |plugin| %>
-              <%= plugin.filter_footer_social %>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </footer>
   </body>
 </html>

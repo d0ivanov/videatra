@@ -35,8 +35,9 @@ ActiveRecord::Schema.define(version: 20140105151325) do
 
   create_table "subscription_plans", force: true do |t|
     t.string  "name"
+    t.text    "description"
     t.integer "duration"
-    t.integer "price"
+    t.float   "price"
   end
 
   create_table "subscription_plans_users", force: true do |t|

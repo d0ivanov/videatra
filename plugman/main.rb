@@ -1,14 +1,40 @@
 PlugMan.define :main do
-  author 'mzdravkov and d0ivanov'
+  author 'Mihail Zdravkov & Dobromir Ivanov'
   version  '0.0.1'
   extends({root: [:root]})
   requires []
-  #should be symbols
-  extension_points [:filter_before_route, :filter_title, :filter_header_logo,
-                    :filter_header, :filter_header_menu, :filter_loged_in_header_menu, :filter_not_loged_in_header_menu,
-                    :filter_footer_menu, :filter_footer, :filter_footer_social, :filter_landing,
-                    :filter_index_heading, :filter_video_info, :filter_video_social, :filter_body_main
-                   ]
+  extension_points [
+    :filter_before_route,
+    :filter_layout_meta,
+    :filter_layout_page_title,
+    :filter_layout_includes,
+    :filter_layout_head,
+    :filter_layout_body,
+    #Auth hooks
+
+    :event_before_login_failure,
+    :event_before_logout,
+
+    :event_after_set_user,
+    :event_after_authentication,
+    :event_after_login_failure,
+    :event_after_logout,
+    :event_after_login,
+    :event_after_signup,
+
+    #Video extension points
+    :event_after_file_upload,
+    :event_after_file_upload_failure,
+
+    :event_after_video_save,
+    :event_after_video_save_failure,
+
+    :event_after_video_update,
+    :event_after_video_update_failure,
+
+    :event_before_video_delete,
+    :event_after_video_delete
+  ]
   params()
 
   def call event, *args
@@ -28,11 +54,5 @@ end
 
 MAIN = PlugMan.registered_plugins[:main]
 
-require './plugman/authentication'
-require './plugman/videos'
-
 auth_hooks
 video_hooks
-
-PlugMan.load_plugins './plugins'
-PlugMan.start_all_plugins
